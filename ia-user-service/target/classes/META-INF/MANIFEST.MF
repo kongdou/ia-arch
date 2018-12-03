@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: ia-user-service
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: deepsky
+Implementation-Vendor-Id: cn.iac
+Build-Jdk: 1.8.0_131
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/ia-arch/ia-user-service
+Created-By: Maven Integration for Eclipse
+
