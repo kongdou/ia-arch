@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ia.demo.po.User;
 
-@FeignClient(name="ia-user-service",value="ia-user-service",url="localhost:9090")
+@FeignClient(name="ia-user-service",value="ia-user-service")
 public interface UserService {
 	
 	@GetMapping("/user/getUserByName")
