@@ -14,7 +14,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -76,6 +76,11 @@
 			<artifactId>kotlin-reflect</artifactId>
 			<version>${kotlin.version}</version>
 			<optional>true</optional>
+		</dependency>
+		<!-- 限流 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis-reactive</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

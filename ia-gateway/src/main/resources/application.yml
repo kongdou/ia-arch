@@ -16,15 +16,21 @@ spring:
           enabled: true
           lowerCaseServiceId: true
       routes:
-        - id: myRoute
+        - id: sub_route
           uri: lb://ia-subscription-service
           predicates: 
           - Path=/subscription/**
-        - id: myRoute
+          filters:
+          - name: RequestRateLimiter
+            args:
+              redis-rate-limiter.replenishRate: 1
+              redis-rate-limiter.burstCapacity: 2
+              key-resolver: "#{@userKeyResolver}"
+        - id: user_route
           uri: lb://ia-user-service
           predicates: 
           - Path=/user/**
-        - id: myRoute
+        - id: book_route
           uri: lb://ia-book-service
           predicates: 
           - Path=/book/**
@@ -44,7 +50,6 @@ management:
     health:
       show-details: always
         
-  
 server:
   name: ia-gateway
   port: 9000
