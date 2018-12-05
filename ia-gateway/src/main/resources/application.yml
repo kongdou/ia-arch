@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: ia-gateway
+  cloud:
+    consul:
+      discovery: 
+        enabled: true
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        instance-id: ia-gateway
+      host: localhost
+      port: 8500
+    gateway:
+      discovery:
+        locator: 
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: myRoute
+          uri: lb://ia-subscription-service
+          predicates: 
+          - Path=/subscription/**
+        - id: myRoute
+          uri: lb://ia-user-service
+          predicates: 
+          - Path=/user/**
+        - id: myRoute
+          uri: lb://ia-book-service
+          predicates: 
+          - Path=/book/**
+                    
+management:
+  server:
+    port: 9083
+    ssl:
+      enabled: false
+  servlet:
+    context-path: /
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+        
+  
+server:
+  name: ia-gateway
+  port: 9000

@@ -57,7 +57,7 @@ public class SubController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getSubByUserName", method = RequestMethod.GET)
-	public List<Sub> getSubByUserName(@RequestParam("usename") String username) {
+	public List<Sub> getSubByUserName(@RequestParam("username") String username) {
 		List<Sub> subs = new ArrayList<Sub>();
 		// 查询UserID
 		List<User> users = userService.getUserByName(username);
