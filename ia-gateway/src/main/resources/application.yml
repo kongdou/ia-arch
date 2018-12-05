@@ -1,3 +1,4 @@
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
 spring:
   application:
     name: ia-gateway
@@ -23,9 +24,14 @@ spring:
           filters:
           - name: RequestRateLimiter
             args:
-              redis-rate-limiter.replenishRate: 1
-              redis-rate-limiter.burstCapacity: 2
-              key-resolver: "#{@userKeyResolver}"
+              redis-rate-limiter.replenishRate: 10 #允许用户每秒处理多少个请求
+              redis-rate-limiter.burstCapacity: 20 #令牌桶容量
+              key-resolver: "#{@ipKeyResolver}"  #根据IP限流
+              # key-resolver: "#{@userKeyResolver}" #根据userId限流
+          - name: Hystrix  # 熔断
+            args:
+              name: fallbackcmd
+              fallbackUri: forward:/fallback
         - id: user_route
           uri: lb://ia-user-service
           predicates: 
