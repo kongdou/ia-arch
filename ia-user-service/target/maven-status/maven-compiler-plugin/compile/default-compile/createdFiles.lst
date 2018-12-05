@@ -1,6 +1,0 @@
-ia\demo\UserServiceApplication.class
-ia\demo\po\User.class
-ia\demo\service\UserService.class
-ia\demo\controller\UserController.class
-ia\demo\mapper\UserMapper.class
-ia\demo\druid\DruidConfiguration.class
