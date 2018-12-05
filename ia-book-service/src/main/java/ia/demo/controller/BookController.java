@@ -3,14 +3,13 @@ package ia.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ia.demo.inter.UserService;
 import ia.demo.po.Book;
-import ia.demo.po.User;
 import ia.demo.service.BookService;
 
 @RestController
@@ -20,26 +19,23 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
-	@Autowired
-	private UserService userService;
+	@GetMapping(value="/getBookByIsbn")
+	List<Book> getBookByIsbn(@RequestParam("isbn") String isbn){
+		return bookService.getBookByIsbn(isbn);
+	}
 	
-	@RequestMapping(value = "/getbooks", method = RequestMethod.GET)
-	public List<Book> getBooksByUserID(@RequestParam("id") long id) {
-		return bookService.getBooksByUserId(id);
+	@GetMapping(value="/getBookByName")
+	List<Book> getBookByName(@RequestParam("name") String name){
+		return bookService.getBooksByName(name);
 	}
 
 	@RequestMapping(value="/addbook",method=RequestMethod.POST)
 	public String add(@RequestParam("isbn") String isbn,@RequestParam("name") String bookname,
-			@RequestParam("price") double price,@RequestParam("username") String username) {
+			@RequestParam("price") double price) {
 		Book book = new Book();
 		book.setIsbn(isbn);
 		book.setName(bookname);
 		book.setPrice(price);
-		//调用用户服务，通过username查询userid
-		User user = userService.getUserByName(username).get(0);
-		if(user != null ) {
-			book.setUserId(user.getId());
-		}
 		bookService.save(book);
 		return "success";
 	}

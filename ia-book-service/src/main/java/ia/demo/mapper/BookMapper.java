@@ -13,10 +13,13 @@ import ia.demo.po.Book;
 @Mapper
 public interface BookMapper {
 
-	@Select("select * from book where userid=#{id}")
-	public List<Book> getBooksByUserId(long id);
+	@Select("select * from book where name=#{name}")
+	public List<Book> getBooksByName(String name);
+
+	@Select("select * from book where isbn=#{isbn}")
+	public List<Book> getBookByIsbn(String isbn);
 	
-	@Insert("insert into book(user_id,name,isbn) values(#{userId},#{name},#{isbn})")
+	@Insert("insert into book(name,isbn,price) values(#{name},#{isbn},#{price})")
 	@Options(useGeneratedKeys=true,keyColumn="id",keyProperty="id")
 	public void save(Book book);
 	

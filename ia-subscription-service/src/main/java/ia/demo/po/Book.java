@@ -11,6 +11,8 @@ public class Book implements Serializable {
 	private static final long serialVersionUID = -1282478334946171815L;
 	//id
 	private long id;
+	//用户ID
+	private long userId;
 	//名字
 	private String name;
 	//编号
@@ -24,6 +26,12 @@ public class Book implements Serializable {
 		this.id = id;
 	}
 	
+	public long getUserId() {
+		return userId;
+	}
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 	public String getName() {
 		return name;
 	}

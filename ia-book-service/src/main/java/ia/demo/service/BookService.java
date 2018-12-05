@@ -16,8 +16,12 @@ public class BookService {
 	@Autowired
 	BookMapper bookMapper;
 	
-	public List<Book> getBooksByUserId(long id){
-        return bookMapper.getBooksByUserId(id);
+	public List<Book> getBookByIsbn(String isbn){
+		return bookMapper.getBookByIsbn(isbn);
+	}
+	
+	public List<Book> getBooksByName(String name){
+        return bookMapper.getBooksByName(name);
     }
 	
 	public void save(Book book){

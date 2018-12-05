@@ -25,13 +25,13 @@ public class UserController {
 		return userService.getUserByName(name);
 	}
 	
-	@RequestMapping(value="/add")
-	public String add() {
+	@RequestMapping(value="/adduser",method=RequestMethod.POST)
+	public String add(@RequestParam("username") String username,@RequestParam("email") String email,@RequestParam("age") int age) {
 		User user = new User();
 		//20-30随机数
-		user.setAge(new Random().nextInt(10)+20);
-		String username = randonName(8);
-		user.setEmail(username+"@gmail.com");
+		user.setAge(age);
+		//String username = randonName(8);
+		user.setEmail(email);
 		user.setUsername(username);
 		userService.save(user);
 		return "success";
